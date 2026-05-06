@@ -6,6 +6,8 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import ProjectsPage from "./pages/ProjectsPage";
+import { useTheme } from "./context/ThemeContext";
+import ScrollToTop from "./components/ScrollToTop";
 
 function HomePage() {
   return (
@@ -20,10 +22,17 @@ function HomePage() {
 }
 
 function App() {
+  const { theme } = useTheme();
+
   return (
-    <div className="min-h-screen bg-background text-white selection:bg-primary/30 relative overflow-x-hidden">
-      <div className="scanlines" />
-      <div className="scanline-move" />
+    <div className="min-h-screen bg-background text-white selection:bg-primary/30 relative overflow-x-hidden transition-colors duration-500">
+      <ScrollToTop />
+      {theme === 'retro' && (
+        <>
+          <div className="scanlines" />
+          <div className="scanline-move" />
+        </>
+      )}
       <Navbar />
       <main>
         <Routes>
@@ -32,14 +41,13 @@ function App() {
         </Routes>
       </main>
 
-      <footer className="py-6 px-4 border-t-4 border-white text-center text-gray-400 font-pixel text-[10px]">
+      <footer className={`py-6 px-4 border-t-4 text-center font-pixel text-[10px] transition-all duration-500 ${theme === 'brutalist' ? 'bg-black text-white border-black font-sans font-bold text-sm' : 'bg-transparent text-gray-400 border-white'
+        }`}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <p>© 2026 MOGESH. ALL RIGHTS RESERVED.</p>
-          <div className="flex gap-8">
-            <a href="#" className="hover:text-primary transition-colors">[PRIVACY]</a>
-            <a href="#" className="hover:text-primary transition-colors">[TERMS]</a>
-          </div>
-          <p className="text-secondary">ENGINE: REACT</p>
+          <p className={theme === 'brutalist' ? 'text-accent' : 'text-secondary'}>
+            ENGINE: {theme === 'brutalist' ? 'RAW REACT' : 'REACT'}
+          </p>
         </div>
       </footer>
     </div>

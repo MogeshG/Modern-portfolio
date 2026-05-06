@@ -19,6 +19,21 @@
 
 :root {
   color-scheme: dark;
+  --brutalist-bg: #e0e0e0;
+  --brutalist-text: #000;
+  --brutalist-primary: #ff3e00; /* Vibrant Orange */
+  --brutalist-secondary: #0000ff; /* Electric Blue */
+  --brutalist-accent: #ffff00; /* Acid Yellow */
+}
+
+[data-theme='brutalist'] {
+  color-scheme: light;
+  --color-background: var(--brutalist-bg);
+  --color-surface: #ffffff;
+  --color-border: #000000;
+  --color-primary: var(--brutalist-primary);
+  --color-secondary: var(--brutalist-secondary);
+  --color-accent: var(--brutalist-accent);
 }
 
 body {
@@ -27,6 +42,13 @@ body {
   font-family: var(--font-retro);
   overflow-x: hidden;
   image-rendering: pixelated;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+[data-theme='brutalist'] body {
+  color: var(--brutalist-text);
+  font-family: 'Inter', sans-serif;
+  image-rendering: auto;
 }
 
 h1,
@@ -37,6 +59,16 @@ h3,
   text-transform: uppercase;
 }
 
+[data-theme='brutalist'] h1,
+[data-theme='brutalist'] h2,
+[data-theme='brutalist'] h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
 @layer base {
   * {
     @apply border-white;
@@ -45,28 +77,53 @@ h3,
 
 @layer utilities {
   .pixel-box {
-    @apply bg-surface border-4 border-white;
+    @apply bg-surface border-4 border-white transition-all duration-500;
     box-shadow: 8px 8px 0px var(--color-primary);
   }
 
+  [data-theme='brutalist'] .pixel-box {
+    @apply border-black bg-white;
+    box-shadow: 12px 12px 0px #000;
+  }
+  
   .pixel-box-cyan {
-    @apply bg-surface border-4 border-white;
+    @apply bg-surface border-4 border-white transition-all duration-500;
     box-shadow: 8px 8px 0px var(--color-secondary);
   }
 
+  [data-theme='brutalist'] .pixel-box-cyan {
+    @apply border-black bg-white;
+    box-shadow: 12px 12px 0px var(--color-secondary);
+  }
+
   .pixel-box-yellow {
-    @apply bg-surface border-4 border-white;
+    @apply bg-surface border-4 border-white transition-all duration-500;
     box-shadow: 8px 8px 0px var(--color-accent);
   }
 
+  [data-theme='brutalist'] .pixel-box-yellow {
+    @apply border-black bg-white;
+    box-shadow: 12px 12px 0px var(--color-accent);
+  }
+
   .pixel-button {
-    @apply px-4 py-2 bg-white text-black border-4 border-black font-pixel text-[10px] cursor-pointer active:translate-x-1 active:translate-y-1 active:shadow-none transition-all;
+    @apply px-4 py-2 bg-white text-black border-4 border-black font-pixel text-[10px] cursor-pointer active:translate-x-1 active:translate-y-1 active:shadow-none transition-all duration-300;
     box-shadow: 4px 4px 0px var(--color-primary);
   }
 
+  [data-theme='brutalist'] .pixel-button {
+    @apply font-sans font-black text-lg italic;
+    box-shadow: 6px 6px 0px #000;
+  }
+
   .pixel-button-cyan {
-    @apply px-4 py-2 bg-white text-black border-4 border-black font-pixel text-[10px] cursor-pointer active:translate-x-1 active:translate-y-1 active:shadow-none transition-all;
+    @apply px-4 py-2 bg-white text-black border-4 border-black font-pixel text-[10px] cursor-pointer active:translate-x-1 active:translate-y-1 active:shadow-none transition-all duration-300;
     box-shadow: 4px 4px 0px var(--color-secondary);
+  }
+
+  [data-theme='brutalist'] .pixel-button-cyan {
+    @apply font-sans font-black text-lg italic bg-secondary;
+    box-shadow: 6px 6px 0px #000;
   }
 
   .text-neon-pink {
@@ -74,9 +131,38 @@ h3,
     text-shadow: 3px 3px 0px #fff;
   }
 
+  [data-theme='brutalist'] .text-neon-pink {
+    @apply text-black;
+    text-shadow: none;
+    background: var(--color-primary);
+    padding: 0 4px;
+  }
+
   .text-neon-cyan {
     color: var(--color-secondary);
     text-shadow: 3px 3px 0px #fff;
+  }
+
+  [data-theme='brutalist'] .text-neon-cyan {
+    @apply text-black;
+    text-shadow: none;
+    background: var(--color-secondary);
+    padding: 0 4px;
+  }
+
+  .hover-box-active {
+    @apply transition-all duration-300 cursor-default;
+  }
+
+  .hover-box-active:hover {
+    @apply bg-surface border-primary;
+    box-shadow: 12px 12px 0px var(--color-secondary);
+    transform: translate(-4px, -4px);
+  }
+
+  [data-theme='brutalist'] .hover-box-active:hover {
+    @apply bg-primary border-black;
+    box-shadow: 15px 15px 0px #000;
   }
 }
 
