@@ -58,11 +58,11 @@ const Contact = () => {
     e.preventDefault();
     if (!formRef.current) return;
 
-    // Safety feature: 5 minute cooldown
+    // Safety feature: 1 minute cooldown
     const lastSent = localStorage.getItem('last_email_sent');
     const now = Date.now();
-    if (lastSent && now - parseInt(lastSent) < 300000) {
-      const timeLeft = Math.ceil((300000 - (now - parseInt(lastSent))) / 60000);
+    if (lastSent && now - parseInt(lastSent) < 60000) {
+      const timeLeft = Math.ceil((60000 - (now - parseInt(lastSent))) / 60000);
       setStatus({
         type: 'error',
         message: `SYSTEM COOLING DOWN. RETRY IN ${timeLeft} MINUTE${timeLeft > 1 ? 'S' : ''}.`
