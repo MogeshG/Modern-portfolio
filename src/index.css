@@ -1,0 +1,191 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ff00ff;
+  /* Magenta */
+  --color-secondary: #00ffff;
+  /* Cyan */
+  --color-accent: #ffff00;
+  /* Yellow */
+  --color-success: #00ff00;
+  /* Lime */
+  --color-background: #000000;
+  --color-surface: #1a1a1a;
+  --color-border: #ffffff;
+
+  --font-pixel: "Press Start 2P", system-ui;
+  --font-retro: "VT323", monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-background);
+  color: #fff;
+  font-family: var(--font-retro);
+  overflow-x: hidden;
+  image-rendering: pixelated;
+}
+
+h1,
+h2,
+h3,
+.nav-link {
+  font-family: var(--font-pixel);
+  text-transform: uppercase;
+}
+
+@layer base {
+  * {
+    @apply border-white;
+  }
+}
+
+@layer utilities {
+  .pixel-box {
+    @apply bg-surface border-4 border-white;
+    box-shadow: 8px 8px 0px var(--color-primary);
+  }
+
+  .pixel-box-cyan {
+    @apply bg-surface border-4 border-white;
+    box-shadow: 8px 8px 0px var(--color-secondary);
+  }
+
+  .pixel-box-yellow {
+    @apply bg-surface border-4 border-white;
+    box-shadow: 8px 8px 0px var(--color-accent);
+  }
+
+  .pixel-button {
+    @apply px-4 py-2 bg-white text-black border-4 border-black font-pixel text-[10px] cursor-pointer active:translate-x-1 active:translate-y-1 active:shadow-none transition-all;
+    box-shadow: 4px 4px 0px var(--color-primary);
+  }
+
+  .pixel-button-cyan {
+    @apply px-4 py-2 bg-white text-black border-4 border-black font-pixel text-[10px] cursor-pointer active:translate-x-1 active:translate-y-1 active:shadow-none transition-all;
+    box-shadow: 4px 4px 0px var(--color-secondary);
+  }
+
+  .text-neon-pink {
+    color: var(--color-primary);
+    text-shadow: 3px 3px 0px #fff;
+  }
+
+  .text-neon-cyan {
+    color: var(--color-secondary);
+    text-shadow: 3px 3px 0px #fff;
+  }
+}
+
+/* Custom Scrollbar - Blocky */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+  border-left: 4px solid #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border: 4px solid #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+/* Smooth Scrolling disabled for more "retro" feel or keep it? Let's keep it but make it snappier */
+html {
+  scroll-behavior: auto;
+}
+
+/* Retro CRT Animations & Utility Classes */
+@layer utilities {
+  .scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+        rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg,
+        rgba(255, 0, 0, 0.03),
+        rgba(0, 255, 0, 0.01),
+        rgba(0, 0, 255, 0.03));
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  @keyframes scanline {
+    0% {
+      transform: translateY(-100%);
+    }
+
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+
+  .scanline-move {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(0deg, rgba(0, 255, 255, 0) 0%, rgba(0, 255, 255, 0.05) 50%, rgba(0, 255, 255, 0) 100%);
+    animation: scanline 10s linear infinite;
+    pointer-events: none;
+    z-index: 1001;
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes glint {
+    0% {
+      transform: translateX(-100%) rotate(45deg);
+    }
+
+    100% {
+      transform: translateX(200%) rotate(45deg);
+    }
+  }
+
+  .glint-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glint-effect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent);
+    animation: glint 3s infinite;
+  }
+}
