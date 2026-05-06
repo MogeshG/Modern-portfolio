@@ -8,6 +8,7 @@ import Contact from "./components/Contact";
 import ProjectsPage from "./pages/ProjectsPage";
 import { useTheme } from "./context/ThemeContext";
 import ScrollToTop from "./components/ScrollToTop";
+import { Analytics } from "@vercel/analytics/react"
 
 function HomePage() {
   return (
@@ -50,6 +51,7 @@ function App() {
           </p>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 }
