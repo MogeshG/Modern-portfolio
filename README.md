@@ -1,73 +1,72 @@
-# React + TypeScript + Vite
+# 🕹️ MOGESH | Modern Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-impact, dual-themed portfolio featuring a radical shift between **Retro Arcade** and **Modern Brutalist** aesthetics. Built with high-performance React and tailored for a unique user experience.
 
-Currently, two official plugins are available:
+## 🚀 Live Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 1. Dual-Theme Engine
+Switch seamlessly between two distinct digital worlds:
+- **Pixel/Retro Mode**: 8-bit typography, CRT scanline overlays, neon accents, and nostalgic arcade vibes.
+- **Brutalist Mode**: Raw geometry, high-contrast monochrome layouts, heavy shadows, and bold typography inspired by architectural brutalism.
 
-## React Compiler
+### 2. Interactive Applets
+The hero section features a dynamic dashboard that changes based on your theme:
+- **GAME.EXE (Retro)**: A fully playable flappy-bird style mini-game with custom physics and particle trails.
+- **SKETCH.SYS (Brutalist)**: A raw, geometric drawing canvas with multiple brush modes (Block, Wire, Dots) and a responsive toolbar.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 3. Mission Archive (Projects)
+A dedicated page documenting digital artifacts and deployed systems, featuring:
+- Theme-aware project cards.
+- Smooth Framer Motion transitions.
+- Global "Scroll to Top" navigation logic.
 
-## Expanding the ESLint configuration
+### 4. Data Transmission (Contact)
+A secure contact hub integrated with **EmailJS**:
+- **Rate Limiting**: Built-in 5-minute cooldown safety feature using `localStorage`.
+- **System Feedback**: Real-time transmission status updates (Transmitting, Success, Error).
+- **Social Integration**: Custom SVG icons for GitHub, LinkedIn, and Instagram.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Core**: React 19 + TypeScript + Vite
+- **Styling**: Tailwind CSS 4
+- **Animations**: Framer Motion
+- **Icons**: Lucide React + Custom SVGs
+- **Email Service**: EmailJS Browser SDK
+- **Routing**: React Router 7
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ Setup & Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/MogeshG/Modern-portfolio.git
+   cd Modern-portfolio
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+3. **Configure Environment Variables**
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_EMAILJS_SERVICE_ID=your_service_id
+   VITE_EMAILJS_TEMPLATE_ID=your_template_id
+   VITE_EMAILJS_PUBLIC_KEY=your_public_key
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+4. **Launch Development Server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Build for Production**
+   ```bash
+   npm run build
+   ```
+
+---
+
+**Designed & Developed by [MOGESH G](https://github.com/MogeshG)**  
+*Expression through raw geometry and pixel-perfect logic.*
